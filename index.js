@@ -15,6 +15,21 @@ function computerPlay() {
     return gameMoveSelection[getRandomIndex(gameMoveSelection.length)];
 }
 
+// get user input handle unusable input and prompt again
+function getUserInput() {
+    let userChoice = prompt('Please choose Paper, Rock, or Scissors.');
+
+    if (userChoice.length > 3)
+        userChoice = userChoice[0].toUpperCase() + userChoice.substr(1).toLowerCase();
+
+    if (userChoice == 'Rock' || userChoice == 'Paper' || userChoice == 'Scissors') {
+        return userChoice;
+    } else {
+        console.log('Invalid selection!');
+        getUserInput();
+    }
+}
+
 // display message if player win and increase score for player
 function userWins(userPlay, computerPlay) {
     console.log(`You win! ${userPlay} beats ${computerPlay}.`);
@@ -28,29 +43,27 @@ function userLoses(userPlay, computerPlay) {
 }
 
 // take user input and computer input and compare them declare round winner
-function playRound(userPlay, computerPlay) {
-    userPlay = userPlay[0].toUpperCase() + userPlay.substr(1).toLowerCase();
+function playRound(userSelection, computerSelection) {
 
-    // display msg if there is a tie and return to game func
-    if (userPlay == computerPlay) {
+    // display msg if there is a tie and get input again
+    while (userSelection == computerSelection) {
         console.log("This game was a tie. Try again.");
-        return null;
+        getUserInput();
+        computerSelection = computerPlay();
     }
 
     // decide who wins and call appropriate func
-    switch (userPlay) {
+    switch (userSelection) {
         case 'Paper':
-            (computerPlay == "Rock") ?
-            userWins(userPlay, computerPlay): userLoses(userPlay, computerPlay);
+            (computerSelection == "Rock") ?
+            userWins(userSelection, computerSelection): userLoses(userSelection, computerSelection);
             break;
         case 'Rock':
-            (computerPlay == "Scissors") ? userWins(userPlay, computerPlay) userLoses(userPlay, computerPlay);
+            (computerSelection == "Scissors") ? userWins(userSelection, computerSelection): userLoses(userSelection, computerSelection);
             break;
         case 'Scissors':
-            (computerPlay == "Paper") ? userWins(userPlay, computerPlay): userLoses(userPlay, computerPlay);
+            (computerSelection == "Paper") ? userWins(userSelection, computerSelection): userLoses(userSelection, computerSelection);
             break;
-        default:
-            console.log('Invalid selection! You mush choose Paper, Rock, or Scissors.')
     }
 }
 
@@ -58,12 +71,12 @@ function playRound(userPlay, computerPlay) {
 function game() {
     userScore = 0;
     computerScore = 0;
-    let userInput = '';
+    let userSelection = '';
     let computerSelection = computerPlay();
 
     for (let i = 0; i < 5; i++) {
-        userInput = prompt('Please choose Paper, Rock, or Scissors.', 'Enter your selection here');
-        playRound(userInput, computerSelection);
+        userSelection = getUserInput();
+        playRound(userSelection, computerSelection);
         computerSelection = computerPlay();
     }
     // print if the user won or lost the 5 round challenge
