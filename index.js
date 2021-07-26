@@ -1,10 +1,6 @@
 // store values for possible game moves
 const gameMoveSelection = ['Rock', 'Paper', 'Scissors'];
 
-// initalized player and computer's score to use for final score report
-let userScore = 0;
-let computerScore = 0;
-
 // get a random index for the computer to use for its move
 function getRandomIndex(indexSize) {
     return Math.floor(Math.random() * indexSize);
@@ -17,29 +13,17 @@ function computerPlay() {
 
 // get user input handle unusable input and prompt again
 function getUserInput() {
-    let userChoice = prompt('Please choose Paper, Rock, or Scissors.');
-
-    if (userChoice.length > 3)
-        userChoice = userChoice[0].toUpperCase() + userChoice.substr(1).toLowerCase();
-
-    if (userChoice == 'Rock' || userChoice == 'Paper' || userChoice == 'Scissors') {
-        return userChoice;
-    } else {
-        console.log('Invalid selection!');
-        getUserInput();
-    }
+    // TO-DO return button ids
 }
 
 // display message if player win and increase score for player
 function userWins(userPlay, computerPlay) {
-    console.log(`You win! ${userPlay} beats ${computerPlay}.`);
-    userScore++;
+// TO-DO return winner msg
 }
 
 // display message if player loses and increase score for computer 
 function userLoses(userPlay, computerPlay) {
-    console.log(`You lose! ${computerPlay} beats ${userPlay}.`);
-    computerScore++;
+// TO-DO return loser msg
 }
 
 // take user input and computer input and compare them declare round winner
@@ -47,7 +31,7 @@ function playRound(userSelection, computerSelection) {
 
     // display msg if there is a tie and get input again
     while (userSelection == computerSelection) {
-        console.log("This game was a tie. Try again.");
+        // TO-DO send tie message to user
         getUserInput();
         computerSelection = computerPlay();
     }
@@ -67,23 +51,34 @@ function playRound(userSelection, computerSelection) {
     }
 }
 
-// play five rounds report final score at the end
+// TO-DO maybe delete? or refactor?
 function game() {
-    userScore = 0;
-    computerScore = 0;
-    let userSelection = '';
     let computerSelection = computerPlay();
-
-    for (let i = 0; i < 5; i++) {
-        userSelection = getUserInput();
-        playRound(userSelection, computerSelection);
-        computerSelection = computerPlay();
-    }
-    // print if the user won or lost the 5 round challenge
-    (userScore > computerScore) ? console.log("You won the 5 round challenge."): console.log("You lost the 5 round challenge.");
-
-    console.log(`Game Over. Final Score: ${computerScore} Computer v ${userScore} You.`)
 }
 
 // start new game
 game();
+
+//below is and example of how you can attach event listeners to each button
+
+{
+    /* < div id = "container" >
+        <
+        button id = "1" > Click Me < /button> <
+        button id = "2" > Click Me < /button> <
+        button id = "3" > Click Me < /button> <
+        /div> */
+}
+
+
+// // buttons is a node list. It looks and acts much like an array.
+// const buttons = document.querySelectorAll('button');
+
+// // we use the .forEach method to iterate through each button
+// buttons.forEach((button) => {
+
+//     // and for each one we add a 'click' listener
+//     button.addEventListener('click', () => {
+//         alert(button.id);
+//     });
+// });
