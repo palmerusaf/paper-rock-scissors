@@ -1,4 +1,4 @@
-// store values for possible game moves
+// store values for possible game moves for computer to select
 const gameMoveSelection = ['Rock', 'Paper', 'Scissors'];
 
 // setup buttons to get user input and pass it into the game
@@ -23,12 +23,12 @@ function computerPlay() {
 
 // display message if player win and increase score for player
 function userWins(userPlay, computerPlay) {
-    alert(`win user:${userPlay} computer:${computerPlay}`);
+    alert(`You win! ${userPlay} beats ${computerPlay}.`);
 }
 
 // display message if player loses and increase score for computer 
 function userLoses(userPlay, computerPlay) {
-    alert(`lose user:${userPlay} computer:${computerPlay}`);
+    alert(`You lose! ${computerPlay} beats ${userPlay}.`);
 }
 
 // take user input and computer input and compare them declare round winner
@@ -37,7 +37,6 @@ function playRound(userSelection, computerSelection) {
     // display msg if there is a tie and get input again
     while (userSelection == computerSelection) {
         computerSelection = computerPlay();
-        alert('thai');
     }
 
     // decide who wins and call appropriate func
