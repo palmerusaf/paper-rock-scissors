@@ -11,6 +11,11 @@ buttons.forEach((button) => {
     });
 });
 
+// initialize an element to display the results at bottom of page
+const container = document.querySelector('#container');
+const roundResults = document.createElement('div');
+roundResults.classList.add('round-results');
+
 // get a random index for the computer to use for its move
 function getRandomIndex(indexSize) {
     return Math.floor(Math.random() * indexSize);
@@ -21,14 +26,16 @@ function computerPlay() {
     return gameMoveSelection[getRandomIndex(gameMoveSelection.length)];
 }
 
-// display message if player wins
+// display message if player wins in an appended div
 function userWins(userPlay, computerPlay) {
-    alert(`You win! ${userPlay} beats ${computerPlay}.`);
+    roundResults.textContent = `You win! ${userPlay} beats ${computerPlay}.`;
+    container.append(roundResults);
 }
 
-// display message if player loses 
+// display message if player loses in an appended div
 function userLoses(userPlay, computerPlay) {
-    alert(`You lose! ${computerPlay} beats ${userPlay}.`);
+    roundResults.textContent = `You lose! ${computerPlay} beats ${userPlay}.`;
+    container.append(roundResults);
 }
 
 // take user input and computer input and compare them declare round winner
