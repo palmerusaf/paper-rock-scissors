@@ -21,12 +21,12 @@ function computerPlay() {
     return gameMoveSelection[getRandomIndex(gameMoveSelection.length)];
 }
 
-// display message if player win and increase score for player
+// display message if player wins
 function userWins(userPlay, computerPlay) {
     alert(`You win! ${userPlay} beats ${computerPlay}.`);
 }
 
-// display message if player loses and increase score for computer 
+// display message if player loses 
 function userLoses(userPlay, computerPlay) {
     alert(`You lose! ${computerPlay} beats ${userPlay}.`);
 }
