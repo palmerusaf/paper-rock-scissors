@@ -1,5 +1,9 @@
 // store values for possible game moves for computer to select
 const gameMoveSelection = ['Rock', 'Paper', 'Scissors'];
+// initialized each players scores as a global
+let computerScore = 0;
+let userScore = 0;
+
 
 // setup buttons to get user input and pass it into the game
 const buttons = document.querySelectorAll('button');
@@ -30,12 +34,14 @@ function computerPlay() {
 function userWins(userPlay, computerPlay) {
     roundResults.textContent = `You win! ${userPlay} beats ${computerPlay}.`;
     container.append(roundResults);
+    ++userScore;
 }
 
 // display message if player loses in an appended div
 function userLoses(userPlay, computerPlay) {
     roundResults.textContent = `You lose! ${computerPlay} beats ${userPlay}.`;
     container.append(roundResults);
+    ++computerScore;
 }
 
 // take user input and computer input and compare them declare round winner
@@ -61,8 +67,22 @@ function playRound(userSelection, computerSelection) {
     }
 }
 
-// play single round
+// add div at bottom displaying final results after 5 rounds
+function displayFinalScore(userScore, computerScore) {
+    
+}
+
+// remove final results at bottom to reset game
+function resetFinalScore(){
+    computerScore = 0;
+    userScore = 0;
+
+}
+
+// play five rounds
 function game(userSelection) {
-    let computerSelection = computerPlay();
-    playRound(userSelection, computerSelection);
+    for (let i = 0; i < 5; i++) {
+        let computerSelection = computerPlay();
+        playRound(userSelection, computerSelection);
+    }
 }
