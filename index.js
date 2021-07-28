@@ -1,6 +1,16 @@
 // store values for possible game moves
 const gameMoveSelection = ['Rock', 'Paper', 'Scissors'];
 
+// setup buttons to get user input and pass it into the game
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+
+    // and for each one add a 'click' listener
+    button.addEventListener('click', () => {
+        game(button.id);
+    });
+});
+
 // get a random index for the computer to use for its move
 function getRandomIndex(indexSize) {
     return Math.floor(Math.random() * indexSize);
@@ -11,19 +21,14 @@ function computerPlay() {
     return gameMoveSelection[getRandomIndex(gameMoveSelection.length)];
 }
 
-// get user input handle unusable input and prompt again
-function getUserInput() {
-    // TO-DO return button ids
-}
-
 // display message if player win and increase score for player
 function userWins(userPlay, computerPlay) {
-// TO-DO return winner msg
+    alert(`win user:${userPlay} computer:${computerPlay}`);
 }
 
 // display message if player loses and increase score for computer 
 function userLoses(userPlay, computerPlay) {
-// TO-DO return loser msg
+    alert(`lose user:${userPlay} computer:${computerPlay}`);
 }
 
 // take user input and computer input and compare them declare round winner
@@ -31,9 +36,8 @@ function playRound(userSelection, computerSelection) {
 
     // display msg if there is a tie and get input again
     while (userSelection == computerSelection) {
-        // TO-DO send tie message to user
-        getUserInput();
         computerSelection = computerPlay();
+        alert('thai');
     }
 
     // decide who wins and call appropriate func
@@ -51,34 +55,8 @@ function playRound(userSelection, computerSelection) {
     }
 }
 
-// TO-DO maybe delete? or refactor?
-function game() {
+// play single round
+function game(userSelection) {
     let computerSelection = computerPlay();
+    playRound(userSelection, computerSelection);
 }
-
-// start new game
-game();
-
-//below is and example of how you can attach event listeners to each button
-
-{
-    /* < div id = "container" >
-        <
-        button id = "1" > Click Me < /button> <
-        button id = "2" > Click Me < /button> <
-        button id = "3" > Click Me < /button> <
-        /div> */
-}
-
-
-// // buttons is a node list. It looks and acts much like an array.
-// const buttons = document.querySelectorAll('button');
-
-// // we use the .forEach method to iterate through each button
-// buttons.forEach((button) => {
-
-//     // and for each one we add a 'click' listener
-//     button.addEventListener('click', () => {
-//         alert(button.id);
-//     });
-// });
