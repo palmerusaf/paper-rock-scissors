@@ -9,10 +9,21 @@ let userScore = 0;
 const MAX_ROUNDS = 5;
 let roundCounter = 0;
 
+// this prevents the final score from spawning more than once
+let gameNeedsFinalScore = true;
+
 // initialize an element to display the results at bottom of page
 const container = document.querySelector('#container');
 const roundResults = document.createElement('div');
 roundResults.classList.add('round-results');
+
+// initialize paper rock scissor buttons
+const buttons = container.querySelectorAll('button');
+// make paper rock scissors buttons call playMultipleRounds
+buttons.forEach((button) => {
+    button.addEventListener('click', () => playMultipleRounds(button.id));
+});
+
 
 // get a random index for the computer to use for its move
 function getRandomIndex(indexSize) {
@@ -65,52 +76,43 @@ function playRound(userSelection, computerSelection) {
 
 // add div at bottom displaying final results after 5 rounds
 function displayFinalScore() {
-    // remove fucntion for user selection buttons  to prevent spamming displayFinalScore
-    const container = document.querySelector('#container');
-    const buttons = container.querySelectorAll('button');
+    if (gameNeedsFinalScore) {
+        // make reset button
+        const resetButton = document.createElement('button');
+        resetButton.classList.add('reset-button');
+        resetButton.textContent = 'Play Again?';
+        resetButton.addEventListener('click', () => resetGame());
 
+        // make final score message
+        const finalScore = document.createElement('div');
+        finalScore.classList.add('final-score');
+        finalScore.textContent = `Final Score: Computer-${computerScore} You-${userScore}`;
 
-    // make reset button
-    const resetButton = document.createElement('button');
-    resetButton.classList.add('reset-button');
-    resetButton.textContent = 'Play Again?';
-    let buttonNotPressed = true;
-
-    // make final score message
-    const finalScore = document.createElement('div');
-    finalScore.classList.add('final-score');
-    finalScore.textContent = 'final score';
-
-    // add both elements
-    roundResults.append(finalScore);
-    roundResults.append(resetButton);
-
+        // add both elements
+        roundResults.append(finalScore);
+        roundResults.append(resetButton);
+    }
+    gameNeedsFinalScore = false;
 }
 
 
 // remove final results at bottom then reset and start new game
-function resetFinalScore() {
+function resetGame() {
+    // reset all counters
     computerScore = 0;
     userScore = 0;
     roundCounter = 0;
-    game();
+    gameNeedsFinalScore = true;
+    
+    // remove round results and final score
+    const container = document.querySelector('#container');
+    const roundResults = document.querySelector('.round-results');
+    container.removeChild(roundResults);
 }
 
-// play round for five calls then display final score on next call
+// play number of rounds defined in MAX_ROUNDS then display final score on next call
 function playMultipleRounds(paperRockScissorsButtons) {
     (roundCounter < MAX_ROUNDS) ? playRound(paperRockScissorsButtons, computerPlay()): displayFinalScore();
 }
 
-// play five rounds
-function game() {
-    const container = document.querySelector('#container');
-    const buttons = container.querySelectorAll('button');
 
-    // make paper rock scissors buttons call playMultipleRounds
-    buttons.forEach((button) => {
-        button.addEventListener('click', () => playMultipleRounds(button.id));
-    });
-}
-
-// start game
-game();
