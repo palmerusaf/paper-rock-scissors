@@ -9,16 +9,6 @@ let userScore = 0;
 const MAX_ROUNDS = 5;
 let roundCounter = 0;
 
-// // setup buttons to get user input and pass it into the game
-// const buttons = document.querySelectorAll('button');
-// buttons.forEach((button) => {
-
-//     // and for each one add a 'click' listener
-//     button.addEventListener('click', () => {
-//         game(button.id);
-//     });
-// });
-
 // initialize an element to display the results at bottom of page
 const container = document.querySelector('#container');
 const roundResults = document.createElement('div');
@@ -75,6 +65,10 @@ function playRound(userSelection, computerSelection) {
 
 // add div at bottom displaying final results after 5 rounds
 function displayFinalScore() {
+    // remove fucntion for user selection buttons  to prevent spamming displayFinalScore
+    const container = document.querySelector('#container');
+    const buttons = container.querySelectorAll('button');
+
 
     // make reset button
     const resetButton = document.createElement('button');
@@ -94,33 +88,27 @@ function displayFinalScore() {
 }
 
 
-// remove final results at bottom to reset game
+// remove final results at bottom then reset and start new game
 function resetFinalScore() {
     computerScore = 0;
     userScore = 0;
     roundCounter = 0;
+    game();
 }
 
-// // play five rounds
-// function game(userSelection) {
-//     if (roundCounter < MAX_ROUNDS) {
-//         let computerSelection = computerPlay();
-//         playRound(userSelection, computerSelection);
-//     } else
-//         displayFinalScore();
-// }
-
-//testing
+// play round for five calls then display final score on next call
+function playMultipleRounds(paperRockScissorsButtons) {
+    (roundCounter < MAX_ROUNDS) ? playRound(paperRockScissorsButtons, computerPlay()): displayFinalScore();
+}
 
 // play five rounds
 function game() {
     const container = document.querySelector('#container');
     const buttons = container.querySelectorAll('button');
 
-    // setup buttons to get user input and pass it into the playRound
+    // make paper rock scissors buttons call playMultipleRounds
     buttons.forEach((button) => {
-        // play round for five clicks then display final score on next click
-        button.addEventListener('click', function() { (roundCounter < MAX_ROUNDS) ? playRound(button.id, computerPlay()) : displayFinalScore() });
+        button.addEventListener('click', () => playMultipleRounds(button.id));
     });
 }
 
