@@ -9,15 +9,15 @@ let userScore = 0;
 const MAX_ROUNDS = 5;
 let roundCounter = 0;
 
-// setup buttons to get user input and pass it into the game
-const buttons = document.querySelectorAll('button');
-buttons.forEach((button) => {
+// // setup buttons to get user input and pass it into the game
+// const buttons = document.querySelectorAll('button');
+// buttons.forEach((button) => {
 
-    // and for each one add a 'click' listener
-    button.addEventListener('click', () => {
-        game(button.id);
-    });
-});
+//     // and for each one add a 'click' listener
+//     button.addEventListener('click', () => {
+//         game(button.id);
+//     });
+// });
 
 // initialize an element to display the results at bottom of page
 const container = document.querySelector('#container');
@@ -75,18 +75,24 @@ function playRound(userSelection, computerSelection) {
 
 // add div at bottom displaying final results after 5 rounds
 function displayFinalScore() {
+
     // make reset button
     const resetButton = document.createElement('button');
     resetButton.classList.add('reset-button');
     resetButton.textContent = 'Play Again?';
+    let buttonNotPressed = true;
+
     // make final score message
     const finalScore = document.createElement('div');
     finalScore.classList.add('final-score');
     finalScore.textContent = 'final score';
+
     // add both elements
     roundResults.append(finalScore);
     roundResults.append(resetButton);
+
 }
+
 
 // remove final results at bottom to reset game
 function resetFinalScore() {
@@ -95,11 +101,28 @@ function resetFinalScore() {
     roundCounter = 0;
 }
 
+// // play five rounds
+// function game(userSelection) {
+//     if (roundCounter < MAX_ROUNDS) {
+//         let computerSelection = computerPlay();
+//         playRound(userSelection, computerSelection);
+//     } else
+//         displayFinalScore();
+// }
+
+//testing
+
 // play five rounds
-function game(userSelection) {
-    if (roundCounter < MAX_ROUNDS) {
-        let computerSelection = computerPlay();
-        playRound(userSelection, computerSelection);
-    } else
-        displayFinalScore();
+function game() {
+    const container = document.querySelector('#container');
+    const buttons = container.querySelectorAll('button');
+
+    // setup buttons to get user input and pass it into the playRound
+    buttons.forEach((button) => {
+        // play round for five clicks then display final score on next click
+        button.addEventListener('click', function() { (roundCounter < MAX_ROUNDS) ? playRound(button.id, computerPlay()) : displayFinalScore() });
+    });
 }
+
+// start game
+game();
