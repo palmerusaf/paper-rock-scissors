@@ -1,9 +1,5 @@
 // store values for possible game moves for computer to select
 const gameMoveSelection = ['Rock', 'Paper', 'Scissors'];
-// initialized each players scores as a global
-let computerScore = 0;
-let userScore = 0;
-
 
 // initialized each players scores as a global
 let computerScore = 0;
@@ -78,9 +74,18 @@ function playRound(userSelection, computerSelection) {
 }
 
 // add div at bottom displaying final results after 5 rounds
-<<<<<<< HEAD
 function displayFinalScore() {
-alert(`You reached displayFinalScore() roundCounter=${roundCounter}`)
+    // make reset button
+    const resetButton = document.createElement('button');
+    resetButton.classList.add('reset-button');
+    resetButton.textContent = 'Play Again?';
+    // make final score message
+    const finalScore = document.createElement('div');
+    finalScore.classList.add('final-score');
+    finalScore.textContent = 'final score';
+    // add both elements
+    roundResults.append(finalScore);
+    roundResults.append(resetButton);
 }
 
 // remove final results at bottom to reset game
@@ -88,31 +93,13 @@ function resetFinalScore() {
     computerScore = 0;
     userScore = 0;
     roundCounter = 0;
-=======
-function displayFinalScore(userScore, computerScore) {
-    
-}
-
-// remove final results at bottom to reset game
-function resetFinalScore(){
-    computerScore = 0;
-    userScore = 0;
-
->>>>>>> 6f99b36aa8848cec4d6098ff38f09ea164db8a4e
 }
 
 // play five rounds
 function game(userSelection) {
-<<<<<<< HEAD
     if (roundCounter < MAX_ROUNDS) {
         let computerSelection = computerPlay();
         playRound(userSelection, computerSelection);
     } else
         displayFinalScore();
-=======
-    for (let i = 0; i < 5; i++) {
-        let computerSelection = computerPlay();
-        playRound(userSelection, computerSelection);
-    }
->>>>>>> 6f99b36aa8848cec4d6098ff38f09ea164db8a4e
 }
