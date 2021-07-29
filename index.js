@@ -1,6 +1,14 @@
 // store values for possible game moves for computer to select
 const gameMoveSelection = ['Rock', 'Paper', 'Scissors'];
 
+// initialized each players scores as a global
+let computerScore = 0;
+let userScore = 0;
+
+// initialize max rounds and round counter
+const MAX_ROUNDS = 5;
+let roundCounter = 0;
+
 // setup buttons to get user input and pass it into the game
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
@@ -30,12 +38,14 @@ function computerPlay() {
 function userWins(userPlay, computerPlay) {
     roundResults.textContent = `You win! ${userPlay} beats ${computerPlay}.`;
     container.append(roundResults);
+    ++userScore;
 }
 
 // display message if player loses in an appended div
 function userLoses(userPlay, computerPlay) {
     roundResults.textContent = `You lose! ${computerPlay} beats ${userPlay}.`;
     container.append(roundResults);
+    ++computerScore;
 }
 
 // take user input and computer input and compare them declare round winner
@@ -45,6 +55,8 @@ function playRound(userSelection, computerSelection) {
     while (userSelection == computerSelection) {
         computerSelection = computerPlay();
     }
+
+    roundCounter++;
 
     // decide who wins and call appropriate func
     switch (userSelection) {
@@ -61,8 +73,23 @@ function playRound(userSelection, computerSelection) {
     }
 }
 
-// play single round
+// add div at bottom displaying final results after 5 rounds
+function displayFinalScore() {
+alert(`You reached displayFinalScore() roundCounter=${roundCounter}`)
+}
+
+// remove final results at bottom to reset game
+function resetFinalScore() {
+    computerScore = 0;
+    userScore = 0;
+    roundCounter = 0;
+}
+
+// play five rounds
 function game(userSelection) {
-    let computerSelection = computerPlay();
-    playRound(userSelection, computerSelection);
+    if (roundCounter < MAX_ROUNDS) {
+        let computerSelection = computerPlay();
+        playRound(userSelection, computerSelection);
+    } else
+        displayFinalScore();
 }
