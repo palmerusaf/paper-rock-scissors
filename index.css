@@ -15,17 +15,19 @@ body {
 
 #container {
     display: flex;
-    align-items: flex-start;
+    align-items: flex-end;
     justify-content: space-evenly;
     width: 100%;
 }
 
 #container div {
-    align-self: stretch;
+    display:grid;
+justify-items: center;
+    width: 30%
 }
 
 button {
-    width: 7em;
+    width: 100%;
 }
 
 .round-results {
@@ -39,4 +41,8 @@ button {
 padding-top: 0.2em;    
     padding-bottom: 1em;
 }
-
+img{
+    max-width: 90%;
+    padding-bottom: 1em;
+   border-radius: 25px;
+}
