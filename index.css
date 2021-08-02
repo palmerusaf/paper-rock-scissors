@@ -1,0 +1,29 @@
+body {
+    background-color: rgb(61, 61, 61);
+}
+
+#heading {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+#heading h1 {
+    font-family: fantasy;
+}
+
+#container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+#container div {
+    align-self: stretch;
+}
+
+#container div button {
+    width: 10em;
+}
