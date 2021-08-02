@@ -83,13 +83,13 @@ function displayFinalScore() {
     if (gameNeedsFinalScore) {
         // make reset button
         const resetButton = document.createElement('button');
-        resetButton.classList.add('reset-button');
+        resetButton.id = 'reset-button';
         resetButton.textContent = 'Play Again?';
         resetButton.addEventListener('click', () => resetGame());
 
         // make final score message
         const finalScore = document.createElement('div');
-        finalScore.classList.add('final-score');
+        finalScore.id = 'final-score';
         finalScore.textContent = `Final Score: Computer-${computerScore} You-${userScore}`;
 
         // add both elements
@@ -110,8 +110,11 @@ function resetGame() {
     
     // remove round results and final score
     const container = document.querySelector('#container');
-    const roundResults = document.querySelector('.round-results');
-    container.removeChild(roundResults);
+    const resetButton = document.getElementById('reset-button');
+    const finalScore =  document.getElementById('final-score');
+    container.parentNode.removeChild(roundResultsContainer);
+    resetButton.remove();
+    finalScore.remove();
 }
 
 // play number of rounds defined in MAX_ROUNDS then display final score on next call
