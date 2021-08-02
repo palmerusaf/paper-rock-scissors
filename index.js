@@ -14,8 +14,12 @@ let gameNeedsFinalScore = true;
 
 // initialize an element to display the results at bottom of page
 const container = document.querySelector('#container');
-const roundResults = document.createElement('div');
-roundResults.classList.add('round-results');
+const roundResultsContainer = document.createElement('div');
+const roundResultsText = document.createElement('div');
+roundResultsContainer.classList.add('round-results');
+roundResultsText.classList.add('round-results-text');
+roundResultsContainer.append(roundResultsText);
+
 
 // initialize paper rock scissor buttons
 const buttons = container.querySelectorAll('button');
@@ -37,15 +41,15 @@ function computerPlay() {
 
 // display message if player wins in an appended div
 function userWins(userPlay, computerPlay) {
-    roundResults.textContent = `You win! ${userPlay} beats ${computerPlay}.`;
-    container.append(roundResults);
+    roundResultsText.textContent = `You win! ${userPlay} beats ${computerPlay}.`;
+    container.parentNode.append(roundResultsContainer);
     ++userScore;
 }
 
 // display message if player loses in an appended div
 function userLoses(userPlay, computerPlay) {
-    roundResults.textContent = `You lose! ${computerPlay} beats ${userPlay}.`;
-    container.append(roundResults);
+    roundResultsText.textContent = `You lose! ${computerPlay} beats ${userPlay}.`;
+    container.parentNode.append(roundResultsContainer);
     ++computerScore;
 }
 
@@ -89,8 +93,8 @@ function displayFinalScore() {
         finalScore.textContent = `Final Score: Computer-${computerScore} You-${userScore}`;
 
         // add both elements
-        roundResults.append(finalScore);
-        roundResults.append(resetButton);
+        roundResultsContainer.append(finalScore);
+        roundResultsContainer.append(resetButton);
     }
     gameNeedsFinalScore = false;
 }

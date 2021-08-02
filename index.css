@@ -24,6 +24,19 @@ body {
     align-self: stretch;
 }
 
-#container div button {
-    width: 10em;
+button {
+    width: 7em;
 }
+
+.round-results {
+    padding-top: 1em;
+    width: 100%;
+    text-align: center;
+
+}
+
+.final-score{
+padding-top: 0.2em;    
+    padding-bottom: 1em;
+}
+
