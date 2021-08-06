@@ -22,10 +22,10 @@ roundResultsContainer.append(roundResultsText);
 
 
 // initialize paper rock scissor buttons
-const buttons = container.querySelectorAll('button');
+const divs = container.querySelectorAll('div');
 // make paper rock scissors buttons call playMultipleRounds
-buttons.forEach((button) => {
-    button.addEventListener('click', () => playMultipleRounds(button.id));
+divs.forEach((div) => {
+    div.addEventListener('click', () => playMultipleRounds(div.id));
 });
 
 

@@ -2,7 +2,7 @@ body {
     background-color: rgb(61, 61, 61);
 }
 
-img{
+img {
     max-width: 90%;
     padding-bottom: 1em;
     border-radius: 25px;
@@ -10,6 +10,11 @@ img{
 
 button {
     width: 100%;
+
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 .even-center {
@@ -19,8 +24,8 @@ button {
     justify-content: space-evenly;
 }
 
-.final-score{
-padding-top: 0.2em;    
+.final-score {
+    padding-top: 0.2em;
     padding-bottom: 1em;
 }
 
@@ -31,11 +36,18 @@ padding-top: 0.2em;
 
 
 #container div {
-    display:grid;
-justify-items: center;
+    display: grid;
+    justify-items: center;
     width: 30%
 }
 
+#container div:hover {
+    cursor: pointer;
+}
+
+#container label:hover {
+    cursor: pointer;
+}
 
 .round-results {
     padding-top: 1em;
