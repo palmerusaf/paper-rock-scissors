@@ -2,23 +2,33 @@ body {
     background-color: rgb(61, 61, 61);
 }
 
-#heading {
+img{
+    max-width: 90%;
+    padding-bottom: 1em;
+    border-radius: 25px;
+}
+
+button {
+    width: 100%;
+}
+
+.even-center {
     display: flex;
     align-items: flex-start;
     width: 100%;
     justify-content: space-evenly;
 }
 
+.final-score{
+padding-top: 0.2em;    
+    padding-bottom: 1em;
+}
+
 #heading h1 {
     font-family: fantasy;
 }
 
-#container {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-evenly;
-    width: 100%;
-}
+
 
 #container div {
     display:grid;
@@ -26,23 +36,10 @@ justify-items: center;
     width: 30%
 }
 
-button {
-    width: 100%;
-}
 
 .round-results {
     padding-top: 1em;
     width: 100%;
     text-align: center;
 
-}
-
-.final-score{
-padding-top: 0.2em;    
-    padding-bottom: 1em;
-}
-img{
-    max-width: 90%;
-    padding-bottom: 1em;
-   border-radius: 25px;
 }
