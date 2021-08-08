@@ -38,21 +38,20 @@ function computerPlay() {
 }
 
 // display message if player wins in an appended div
+// display running scores
 function userWins(userPlay, computerPlay) {
     ++userScore;
     roundResultsText.textContent = `You win! ${userPlay} beats ${computerPlay}. 
-    Score: ${userScore} win(s) ${computerScore} loss(es)`;
-    roundResultsText.textContent += ` Round ${computerScore + userScore}/5.`;
+    Score: ${userScore}/5 win(s) ${computerScore}/5 loss(es).`;
     container.parentNode.append(roundResultsContainer);
 }
 
 // display message if player loses in an appended div
-// addition display running score and round number
+// display running scores
 function userLoses(userPlay, computerPlay) {
     ++computerScore;
     roundResultsText.textContent = `You lose! ${computerPlay} beats ${userPlay}. 
-    Score: ${userScore} win(s) ${computerScore} loss(es)`;
-    roundResultsText.textContent += ` Round ${computerScore + userScore}/5.`;
+    Score: ${userScore}/5 win(s) ${computerScore}/5 loss(es).`;
     container.parentNode.append(roundResultsContainer);
 }
 
