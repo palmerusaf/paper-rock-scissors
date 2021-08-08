@@ -127,7 +127,7 @@ function resetGame() {
 
 // play number of rounds defined in MAX_ROUNDS then display final score on next call
 function playMultipleRounds(paperRockScissorsButtons) {
-    roundCounter < MAX_ROUNDS ?
-        playRound(paperRockScissorsButtons, computerPlay()) :
+    (userScore < MAX_ROUNDS && computerScore < MAX_ROUNDS) ?
+    playRound(paperRockScissorsButtons, computerPlay()):
         declareFinalWinner();
 }
