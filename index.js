@@ -79,7 +79,7 @@ function playRound(userSelection, computerSelection) {
 }
 
 // add div at bottom displaying final results after 5 rounds
-function displayFinalScore() {
+function declareFinalWinner() {
     if (gameNeedsFinalScore) {
         // make reset button
         const resetButton = document.createElement('button');
@@ -88,12 +88,12 @@ function displayFinalScore() {
         resetButton.addEventListener('click', () => resetGame());
 
         // make final score message
-        const finalScore = document.createElement('div');
-        finalScore.id = 'final-score';
-        finalScore.textContent = `Final Score: Computer-${computerScore} You-${userScore}`;
+        const finalWinner = document.createElement('div');
+        finalWinner.id = 'final-winner';
+        finalWinner.textContent = `Final Score: Computer-${computerScore} You-${userScore}`;
 
         // add both elements
-        roundResultsContainer.append(finalScore);
+        roundResultsContainer.append(finalWinner);
         roundResultsContainer.append(resetButton);
     }
     gameNeedsFinalScore = false;
@@ -111,15 +111,15 @@ function resetGame() {
     // remove round results and final score
     const container = document.querySelector('#container');
     const resetButton = document.getElementById('reset-button');
-    const finalScore =  document.getElementById('final-score');
+    const finalWinner =  document.getElementById('final-winner');
     container.parentNode.removeChild(roundResultsContainer);
     resetButton.remove();
-    finalScore.remove();
+    finalWinner.remove();
 }
 
 // play number of rounds defined in MAX_ROUNDS then display final score on next call
 function playMultipleRounds(paperRockScissorsButtons) {
-    (roundCounter < MAX_ROUNDS) ? playRound(paperRockScissorsButtons, computerPlay()): displayFinalScore();
+    (roundCounter < MAX_ROUNDS) ? playRound(paperRockScissorsButtons, computerPlay()): declareFinalWinner();
 }
 
 
