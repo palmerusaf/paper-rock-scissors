@@ -5,9 +5,8 @@ const gameMoveSelection = ["Rock", "Paper", "Scissors"];
 let computerScore = 0;
 let userScore = 0;
 
-// initialize max rounds and round counter
-const MAX_ROUNDS = 5;
-let roundCounter = 0;
+// set score required to win game
+const MAX_SCORE = 5;
 
 // this prevents the final score from spawning more than once
 let gameNeedsFinalScore = true;
@@ -62,8 +61,6 @@ function playRound(userSelection, computerSelection) {
         computerSelection = computerPlay();
     }
 
-    roundCounter++;
-
     // decide who wins and call appropriate func
     switch (userSelection) {
         case "Paper":
@@ -112,7 +109,6 @@ function resetGame() {
     // reset all counters
     computerScore = 0;
     userScore = 0;
-    roundCounter = 0;
     gameNeedsFinalScore = true;
 
     // remove round results and final score
@@ -126,7 +122,7 @@ function resetGame() {
 
 // play number of rounds defined in MAX_ROUNDS then display final score on next call
 function playMultipleRounds(paperRockScissorsButtons) {
-    (userScore < MAX_ROUNDS && computerScore < MAX_ROUNDS) ?
+    (userScore < MAX_SCORE && computerScore < MAX_SCORE) ?
     playRound(paperRockScissorsButtons, computerPlay()):
         declareFinalWinner();
 }
