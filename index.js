@@ -9,7 +9,7 @@ let userScore = 0;
 const MAX_SCORE = 5;
 
 // this prevents the final score from spawning more than once
-let gameNeedsFinalScore = true;
+let gameNeedsFinalWinner = true;
 
 // initialize an element to display the results at bottom of page
 const container = document.querySelector("#container");
@@ -83,7 +83,7 @@ function playRound(userSelection, computerSelection) {
 
 // add div at bottom displaying final results after 5 rounds
 function declareFinalWinner() {
-    if (gameNeedsFinalScore) {
+    if (gameNeedsFinalWinner) {
         // make reset button
         const resetButton = document.createElement("button");
         resetButton.id = "reset-button";
@@ -101,7 +101,7 @@ function declareFinalWinner() {
         roundResultsContainer.append(finalWinner);
         roundResultsContainer.append(resetButton);
     }
-    gameNeedsFinalScore = false;
+    gameNeedsFinalWinner = false;
 }
 
 // remove final results at bottom then reset and start new game
@@ -109,7 +109,7 @@ function resetGame() {
     // reset all counters
     computerScore = 0;
     userScore = 0;
-    gameNeedsFinalScore = true;
+    gameNeedsFinalWinner = true;
 
     // remove round results and final score
     const container = document.querySelector("#container");
